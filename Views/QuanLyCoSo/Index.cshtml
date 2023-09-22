@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SuperbrainEmail.Controllers.ViewModelChiNhanh>
+
+@{
+    ViewBag.Title = "Cơ sở";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách Cơ sở - <a href="/QuanLyCoSo/SendEmails" class="btn btn-sm btn-outline-success">Gửi mail</a></h2>
+<p>Kỳ tính phí tháng @ViewBag.thang - Thời gian chốt danh sách: @ViewBag.date</p>
+<table class="table table-striped">
+    <tr>
+        <th>Tên</th>
+        <th>Email</th>
+        <th>Phí thương hiệu</th>
+        <th>Phí Phát sinh (@ViewBag.thangtruoc)</th>
+        <th>Phí tài khoản</th>
+        <th>Phí Phát sinh @ViewBag.thang</th>
+        <th>Phí TK @ViewBag.thang</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateExpire)
+        </td>
+        <td><b>@Html.DisplayFor(modelItem => item.SoluongTKPhatsinhtruoc)</b> - @Html.DisplayFor(modelItem => item.PhiTKPhatsinhtruoc)</td>
+        <td><b>@Html.DisplayFor(modelItem => item.SoluongTK)</b> - @Html.DisplayFor(modelItem => item.PhiTK)</td>
+        <td><b>@Html.DisplayFor(modelItem => item.SoluongTKPhatsinh)</b> - @Html.DisplayFor(modelItem => item.PhiTKPhatsinh)</td>
+        <td>
+            @Html.Raw(item.TrangthaiPhiTKOnline)
+        </td>
+    </tr>
+}
+</table>
